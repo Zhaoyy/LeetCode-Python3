@@ -129,6 +129,53 @@ class ArrayProblem:
                 r = mid
         return l + 1 if nums[l] < target else l
 
+    def isToeplitzMatrix(self, matrix):
+        """
+        https://leetcode.com/problems/toeplitz-matrix/description/
+        
+        :type matrix: List[List[int]]
+        :rtype: bool
+        """
+        m, n = len(matrix) - 1, len(matrix[0]) - 1
+        for i in range(n):
+            a, b = 0, i
+            while a < m and b < n:
+                if matrix[a][b] != matrix[a + 1][b + 1]:
+                    return False
+                a += 1
+                b += 1
+        
+        for i in range(1, m):
+            a, b = i, 0
+            while a < m and b < n:
+                print([a, b, n, m])
+                if matrix[a][b] != matrix[a + 1][b + 1]:
+                    return False
+                a += 1
+                b += 1
+        return True
+
+    # def findMedianSortedArrays(self, nums1, nums2):
+    #     """
+    #     :type nums1: List[int]
+    #     :type nums2: List[int]
+    #     :rtype: float
+    #     """
+    #     step = (len(nums1) + len(nums2)) // 2
+    #     r1, r2 =len(nums1) - 1, len(nums2) - 1
+    #     for _ in range(step):
+    #         if r1 >=0 and r2 >= 0:
+    #             if nums1[r1] > nums2[r2]:
+    #                 r1 -= 1
+    #             else:
+    #                 r2 -= 1
+    #         elif r2 >= 0:
+    #             r2 -= 1
+    #         else:
+    #             r1 -= 1
+    #     if (len(nums1) + len(nums2)) % 2 == 0:
+    #         return 
+
 if __name__ == '__main__':
     ARRAY_PROBLEM = ArrayProblem()
-    print(ARRAY_PROBLEM.searchInsertBetter([1, 3, 5, 6], 2))
+    print(ARRAY_PROBLEM.isToeplitzMatrix([[11,74,0,93],[40,11,74,7]]))

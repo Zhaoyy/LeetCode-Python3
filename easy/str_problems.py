@@ -213,6 +213,20 @@ class StrProblem:
         print(l)
         return ''.join(l)
 
+    def numJewelsInStones(self, J, S):
+        """
+        https://leetcode.com/problems/jewels-and-stones/description/
+
+        :type J: str
+        :type S: str
+        :rtype: int
+        """
+        result = 0
+        for s in S:
+            if s in J:
+                result += 1
+        return result
+
 if __name__ == '__main__':
     problem = StrProblem()
     print(problem.strStr('hello', 'll'))
