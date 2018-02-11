@@ -155,6 +155,23 @@ class ArrayProblem:
                 b += 1
         return True
 
+
+    def dominantIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) < 2:
+            return 0
+        t = [x * 100 + i for i, x in enumerate(nums)]
+        t.sort()
+        m = t[-1] // 100
+        n = t[-2] // 100 
+        if n == 0 or m // n >= 2:
+            return t[-1] % 100
+        else:
+            return -1
+
     # def findMedianSortedArrays(self, nums1, nums2):
     #     """
     #     :type nums1: List[int]
@@ -178,4 +195,5 @@ class ArrayProblem:
 
 if __name__ == '__main__':
     ARRAY_PROBLEM = ArrayProblem()
-    print(ARRAY_PROBLEM.isToeplitzMatrix([[11,74,0,93],[40,11,74,7]]))
+    # print(ARRAY_PROBLEM.isToeplitzMatrix([[11,74,0,93],[40,11,74,7]]))
+    print(ARRAY_PROBLEM.dominantIndex([1,0]))

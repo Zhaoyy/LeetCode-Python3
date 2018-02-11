@@ -55,6 +55,27 @@ class IntProblem:
                 l.append('1')
         return l[i]
 
+    def countPrimeSetBits(self, L, R):
+        """
+        https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/description/
+
+        :type L: int
+        :type R: int
+        :rtype: int
+        """
+        prims = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31}
+        count = 0
+        for n in range(L, R + 1):
+            if bin(n)[2:].count('1') in prims:
+                count += 1
+        return count
+    
+    def countPrimeSetBitsSimple(self, L, R):
+        count = 0
+        for n in range(L, R + 1):
+            count += 665772 >> bin(n).count('1') & 1
+        return count
+
 if __name__ == "__main__":
     problem = IntProblem()
     print(problem.countAndSay(5))
